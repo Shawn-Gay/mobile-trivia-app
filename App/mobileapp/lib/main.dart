@@ -17,16 +17,9 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.red[500],
       ),
       body: Center(
-        child: Text(
-          'Centered Body Text',
-          style: TextStyle(
-            fontSize: 40,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 2,
-            color: Colors.grey[800],
-            fontFamily: 'Akaya',
-          )
-        )
+        child: Image(
+          image: NetworkImage('https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg')
+          ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
