@@ -1,6 +1,11 @@
+
+// packages
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+//services
+import 'package:mobileapp/services/questionRequest.dart';
+
+
 
 class Loading extends StatefulWidget {
   @override
@@ -9,33 +14,35 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
 
-  void getData() async {
 
-    Response response = await get('https://jsonplaceholder.typicode.com/todos/1');
-
-    Response randomQuestion = await get('https://opentdb.com/api.php?amount=1');
-
-    Map data = (jsonDecode(randomQuestion.body));
-    // print(data);
-    List results = (data['results']);
-    print(results.asMap()[0]['correct_answer']);
-    print(results.asMap()[0]['incorrect_answers']);
-    // print(results['correct_answer']);
-
-
-}
-
-@override
-  void initState() {
-    super.initState();
-    getData();
+  void getQuestion() async {
+    QuestionRequest instance = QuestionRequest();
+    await instance.getQuestion();
+    Navigator.pushReplacementNamed(context, '/question', arguments: {
+       'category' : instance.category,
+       'difficulty' : instance.difficulty,
+       'question' : instance.question,
+       'correctAnswer' : instance.correctAnswer,
+    });
   }
 
+    @override
+  void initState() {
+    super.initState();
+    getQuestion();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('Loading'),
+      backgroundColor: Colors.blue[900],
+      body: Center(
+        child: SpinKitFadingCube(
+          color: Colors.white,
+          size: 50.0,
+        )
+      )
+
     );
   }
 }
