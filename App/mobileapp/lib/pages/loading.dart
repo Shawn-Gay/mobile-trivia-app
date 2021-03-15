@@ -1,8 +1,10 @@
+
 // packages
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 //services
 import 'package:mobileapp/services/questionRequest.dart';
+
 
 
 class Loading extends StatefulWidget {
@@ -11,6 +13,7 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+
 
   void getQuestion() async {
     QuestionRequest instance = QuestionRequest();
@@ -39,6 +42,7 @@ class _LoadingState extends State<Loading> {
           size: 50.0,
         )
       )
+
     );
   }
 }
